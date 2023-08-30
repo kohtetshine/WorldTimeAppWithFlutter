@@ -10,8 +10,19 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(child: Text("Home Screen")),
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: [
+            TextButton.icon(
+                onPressed: (){
+                  Navigator.pushNamed(context, '/location');
+                },
+                icon: const Icon(Icons.edit_location),
+              label: const Text("Choose Location"),)
+          ],
+        ),
+      ),
     );
   }
 }
