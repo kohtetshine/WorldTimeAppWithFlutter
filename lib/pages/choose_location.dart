@@ -18,7 +18,6 @@ class _ChooseLocationState extends State<ChooseLocation> {
         centerTitle: true,
         elevation: 0,
       ),
-      body: Text("Choose Location Screen"),
     );
   }
 }
