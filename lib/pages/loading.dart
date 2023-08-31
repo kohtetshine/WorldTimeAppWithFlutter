@@ -11,13 +11,21 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading> {
 
+  bool isLoading = true;
   void setupWorldTime() async {
-    WorldTime instance = WorldTime(location: 'Bangkok', flag: 'thailand.png', url: 'Asia/Bangkok');
+    WorldTime instance = WorldTime(
+        location: 'Bangkok',
+        flag: 'thailand.png',
+        url: 'Asia/Bangkok'
+    );
+
     await instance.getData();
+
     Navigator.pushReplacementNamed(context, '/home',arguments: {
       'location':instance.location,
       'flag' : instance.flag,
       'time' : instance.time,
+      'isDayTime' : instance.isDayTime,
     });
   }
   @override
@@ -31,11 +39,11 @@ class _LoadingState extends State<Loading> {
     return Scaffold(
       backgroundColor: Colors.cyan[300],
       body: Center(
-          child: SpinKitRing(
-            color: Colors.white,
-            size: 100.0,
-          ),
-      )
+        child: isLoading
+            ? CircularProgressIndicator() // Show loading indicator
+            : Text("LoadingComplete"), // Show time data or error message
+      ),
+
     );
   }
 }
